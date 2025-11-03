@@ -4,7 +4,9 @@
     <img src="assets/Kraken_logo.png" alt="KrakenFlow" width="50%">
 </p>
 
-KrakenFlow is a reproducible Nextflow pipeline for fast, accurate taxonomic profiling of short‑read metagenomic datasets. It combines host/contaminant filtering with Bowtie2, taxonomic assignment with Kraken2, abundance re‑estimation with Bracken, interactive visualization with Krona, and an optional multi‑sample report built with phyloseq/R Markdown.
+This pipeline is part of a tutorial. Please visit [https://krakenflowtutorial.netlify.app/](https://krakenflowtutorial.netlify.app/) to learn how it was built. 
+
+It is a reproducible Nextflow pipeline for fast, accurate taxonomic profiling of short‑read metagenomic datasets. It combines host/contaminant filtering with Bowtie2, taxonomic assignment with Kraken2, abundance re‑estimation with Bracken, interactive visualization with Krona, and an optional multi‑sample report built with phyloseq/R Markdown.
 
 ### What it does
 - **Filter reads with Bowtie2**: removes reads mapping to a reference (e.g., yeast) to reduce false positives downstream.
@@ -113,6 +115,3 @@ If you use this workflow, please cite the underlying tools:
 - Ondov BD et al. Krona. BMC Bioinformatics (2011).
 
 And the training material adapted for the R Markdown report as referenced in `bin/report.Rmd`.
-
-
-
