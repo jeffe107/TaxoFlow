@@ -1,4 +1,4 @@
-## KrakenFlow — Taxonomic analysis of metagenomic reads with Nextflow, Kraken2, Bracken, and Krona
+## KrakenFlow
 
 <p align="center">
     <img src="assets/Kraken_logo.png" alt="KrakenFlow" width="50%">
@@ -113,5 +113,6 @@ If you use this workflow, please cite the underlying tools:
 - Ondov BD et al. Krona. BMC Bioinformatics (2011).
 
 And the training material adapted for the R Markdown report as referenced in `bin/report.Rmd`.
+
 
 
