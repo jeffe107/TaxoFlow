@@ -1,5 +1,9 @@
 ## KrakenFlow — Taxonomic analysis of metagenomic reads with Nextflow, Kraken2, Bracken, and Krona
 
+<p align="center">
+    <img src="assets/Kraken_logo.png" alt="KrakenFlow" width="50%">
+</p>
+
 KrakenFlow is a reproducible Nextflow pipeline for fast, accurate taxonomic profiling of short‑read metagenomic datasets. It combines host/contaminant filtering with Bowtie2, taxonomic assignment with Kraken2, abundance re‑estimation with Bracken, interactive visualization with Krona, and an optional multi‑sample report built with phyloseq/R Markdown.
 
 ### What it does
@@ -10,13 +14,9 @@ KrakenFlow is a reproducible Nextflow pipeline for fast, accurate taxonomic prof
 - **(Optional) Multi‑sample BIOM + report**: merges Bracken outputs into `merged.biom` and renders `report.html` via an R Markdown template when a samplesheet is used.
 
 ### Pipeline at a glance
-```
-FASTQs ──> Bowtie2 (filter) ──> Kraken2 (classify) ──> Bracken (abundance)
-                                           │
-                                           └─> Krona (interactive HTML)
-
-Multiple samples (via samplesheet) ──> BIOM merge ──> R Markdown report (phyloseq)
-```
+<p align="center">
+    <img src="assets/workflow_kraken.png" alt="Workflow" width="90%">
+</p>
 
 ### Requirements
 - **Nextflow**: `>=22.10.0` recommended. Install: https://www.nextflow.io/
