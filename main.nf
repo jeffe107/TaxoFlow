@@ -16,7 +16,7 @@ log.info """\
 """
 .stripIndent()
 
-include { kraken2Flow } from './workflow.nf'
+include { KrakenFlow } from './workflow.nf'
 
 workflow {
 
