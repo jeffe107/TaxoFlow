@@ -27,5 +27,5 @@ workflow {
                             .splitCsv(header:true)
                             .map { row-> tuple(row.sample_id, [file(row.fastq_1), file(row.fastq_2)]) }
         }
-    kraken2Flow( params.bowtie2_index, params.kraken2_db, reads_ch )
+    KrakenFlow( params.bowtie2_index, params.kraken2_db, reads_ch )
 }
