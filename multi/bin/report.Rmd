@@ -24,9 +24,9 @@ file <- args[1]
 
 # Reference-based compositional analysis
 
-<p style='text-align: justify;'>We used Kraken2/Bracken to perform taxonomic assignment of the raw sequences and estimate species abundance. The procedure included the remotion of reads mapping to the [yeast genome](https://benlangmead.github.io/aws-indexes/bowtie). The workflow is proposed by [Lu et al. (2022)](https://www.nature.com/articles/s41596-022-00738-y), wrapped by Nextflow.</p>
+<p style='text-align: justify;'>We used Kraken2/Bracken to perform taxonomic assignment of the raw sequences and estimate species abundance. The procedure included the remotion of reads mapping to the [*Arabidopsis thaliana* genome](https://benlangmead.github.io/aws-indexes/bowtie). The workflow is proposed by [Lu et al. (2022)](https://www.nature.com/articles/s41596-022-00738-y), wrapped with Nextflow.</p>
 
-<p style='text-align: justify;'>The analysis of the raw counts was developed using the species abundance data as a Phyloseq object to display absolute and relative abundance, α and β-Diversity.</p>
+<p style='text-align: justify;'>The analysis of the raw counts was developed using the species abundance (Bracken output) data as a Phyloseq object to display absolute and relative abundance, α and β-Diversity.</p>
 
 # Abundance plots
 
@@ -40,11 +40,22 @@ library(ggplot2)
 
 data_biom <- import_biom(file)
 colnames(data_biom@tax_table@.Data)<- c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species")
+
+ps_genus_counts <- tax_glom(data_biom, taxrank = "Genus")
+ps_genus_rel <- transform_sample_counts(
+  ps_genus_counts,
+  function(x) x / sum(x)
+)
+
+genus_mean_rel <- taxa_sums(ps_genus_rel) / nsamples(ps_genus_rel)
+keep_genera <- genus_mean_rel >= 0.03
+data_biom <- prune_taxa(keep_genera, ps_genus_counts)
+
 plot_bar(data_biom, fill = "Genus")+
     theme_bw()+
-    theme(text = element_text(size = 14),
+    theme(text = element_text(size = 12),
         panel.background = element_blank(),
-        plot.title = element_text(size=14,hjust=0.5),
+        plot.title = element_text(size=12,hjust=0.5),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         axis.text.x = element_text(angle = 45, vjust = 1,
@@ -64,9 +75,9 @@ df_per$Genus <- as.factor(df_per$Genus)
 ggplot(data=df_per, aes(x=Sample, y=Abundance, fill=Genus))+
     geom_bar(aes(), stat="identity", position="stack", color = "black")+
     theme_bw()+
-    theme(text = element_text(size = 14),
+    theme(text = element_text(size = 12),
         panel.background = element_blank(),
-        plot.title = element_text(size=14,hjust=0.5),
+        plot.title = element_text(size=12,hjust=0.5),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         axis.text.x = element_text(angle = 45, vjust = 1,
@@ -83,14 +94,14 @@ p = plot_richness(data_biom, measures=c("Chao1", "Shannon"), color = "samples")+
     theme_bw()+
     theme(axis.text.x = element_text(angle = 45, vjust = 1,
                                     size = 12, hjust = 1),
-        axis.text.y = element_text(size = 14),
-        axis.title = element_text(size = 14),
+        axis.text.y = element_text(size = 12),
+        axis.title = element_text(size = 12),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         panel.border = element_blank(),
-        strip.text.x = element_text(size = 14),
+        strip.text.x = element_text(size = 12),
         legend.text = element_text(size = 10),
-        legend.title = element_text(size = 14),
+        legend.title = element_text(size = 12),
         axis.line = element_line(colour = "black"),
         )+
     labs(x = "Sample",
@@ -110,13 +121,13 @@ plot_heatmap(data_biom, method = "PCoA", distance = "bray",
         theme_bw()+
         theme(axis.text.x = element_text(angle = 45, vjust = 1,
                                             size = 12, hjust = 1),
-        axis.text.y = element_text(size = 14),
-        axis.title = element_text(size = 14),
+        axis.text.y = element_text(size = 12),
+        axis.title = element_text(size = 12),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
-        strip.text.x = element_text(size = 14),
+        strip.text.x = element_text(size = 12),
         legend.text = element_text(size = 10),
-        legend.title = element_text(size = 14))
+        legend.title = element_text(size = 12))
 ```
 
 ## Ordination plots
@@ -130,10 +141,10 @@ data.ord <- ordinate(data_biom, "PCoA", "bray")
 plot_ordination(data_biom, data.ord, type="split", color="Genus",
                 title="biplot")+
     theme_bw()+
-    theme(axis.text = element_text(size = 12), axis.title = element_text(size = 14),
-        legend.text = element_text(size = 14), strip.text.x = element_text(size = 14),
-        plot.title = element_text(size = 14),
-        legend.title = element_text(size=14),
+    theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12),
+        legend.text = element_text(size = 12), strip.text.x = element_text(size = 12),
+        plot.title = element_text(size = 12),
+        legend.title = element_text(size=12),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         axis.line = element_line(colour = "black"),
