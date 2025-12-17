@@ -4,7 +4,7 @@
     <img src="assets/logo_TaxoFlow.png" alt="TaxoFlow" width="50%">
 </p>
 
-This pipeline is part of a tutorial. Please visit [https://TaxoFlowtutorial.netlify.app/](https://TaxoFlowtutorial.netlify.app/) to learn how it was built. 
+This pipeline is part of a tutorial. Please visit [https://taxoflow.work/](https://taxoflow.work/) to learn how it was built. 
 
 It is a reproducible Nextflow pipeline for fast, accurate taxonomic profiling of short‑read metagenomic datasets. It combines host/contaminant filtering with Bowtie2, taxonomic assignment with Kraken2, abundance re‑estimation with Bracken, interactive visualization with Krona, and an optional multi‑sample report built with phyloseq/R Markdown.
 
@@ -115,6 +115,7 @@ If you use this workflow, please cite the underlying tools:
 - Ondov BD et al. Krona. BMC Bioinformatics (2011).
 
 And the training material adapted for the R Markdown report as referenced in `bin/report.Rmd`.
+
 
 
 
