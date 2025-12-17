@@ -1,7 +1,7 @@
 ## TaxoFlow
 
 <p align="center">
-    <img src="assets/logo_TaxoFlow.png" alt="TaxoFlow" width="50%">
+    <img src="assets/logo_taxoflow.png" alt="TaxoFlow" width="50%">
 </p>
 
 This pipeline is part of a tutorial. Please visit [https://taxoflow.work/](https://taxoflow.work/) to learn how it was built. 
@@ -115,6 +115,7 @@ If you use this workflow, please cite the underlying tools:
 - Ondov BD et al. Krona. BMC Bioinformatics (2011).
 
 And the training material adapted for the R Markdown report as referenced in `bin/report.Rmd`.
+
 
 
 
