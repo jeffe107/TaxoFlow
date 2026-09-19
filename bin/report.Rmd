@@ -1,7 +1,7 @@
 ---
-title: "Kraken2/Bracken data visualization from Nextflow metagenomics training material"
+title: "TaxoFlow's output report and analysis"
 author: "User"
-date: "2025"
+date: "2026"
 output:
     rmdformats::downcute:
         self_contained: true
@@ -137,9 +137,10 @@ plot_heatmap(data_biom, method = "PCoA", distance = "bray",
 This dimensionality-reduction technique is useful to review the β-diversity, in other words a measure of how alike or different the samples are. To this purpose, we are going to use a Bray-Curtis dissimilarity matrix as a metric of the overall difference among samples:
 
 ```{r pcoa_plot, echo=TRUE}
+sample_data(data_biom)$SampleID <- sample_names(data_biom)
 data.ord <- ordinate(data_biom, "PCoA", "bray")
-plot_ordination(data_biom, data.ord, type="split", color="Genus",
-                title="biplot")+
+plot_ordination(data_biom, data.ord, type="samples",
+                title="Samples", color = "SampleID")+
     theme_bw()+
     theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12),
         legend.text = element_text(size = 12), strip.text.x = element_text(size = 12),
@@ -150,7 +151,7 @@ plot_ordination(data_biom, data.ord, type="split", color="Genus",
         axis.line = element_line(colour = "black"),
         panel.background = element_blank())+
     geom_point(size=5, alpha=0.7)+
-    labs(title="Biplot")
+    labs(title="Samples", color = "Samples")
 ```
 
 # Network Analysis

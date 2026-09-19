@@ -1,7 +1,7 @@
 process K_REPORT_TO_KRONA {
     tag "${sample_id}"
-    publishDir "$params.outdir/${sample_id}", mode:'copy'
     container "community.wave.seqera.io/library/krakentools:1.2--db94e0b19cfa397b"
+    conda "bioconda::krakentools==1.2"
 
     input:
     tuple val(sample_id), path(b_report), path(bracken)
